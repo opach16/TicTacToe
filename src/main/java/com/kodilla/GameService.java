@@ -28,10 +28,10 @@ public class GameService {
             }
             ioController.displayBoard(board);
             do {
-                playerMove = currentPlayer.move();
-            } while (!isValidMove(playerMove));
+                playerMove = currentPlayer.move(board);
+            } while (!isValidMove(board, playerMove));
             board.updateBoard(playerMove, currentPlayer.getSign());
-            if (isWinner()) {
+            if (isWinner(board.getBoard())) {
                 currentPlayer.addPoint();
                 break;
             }
@@ -42,27 +42,26 @@ public class GameService {
         currentPlayer = currentPlayer.equals(player1) ? player2 : player1;
     }
 
-    public boolean isWinner() {
-        char[][] b = board.getBoard();
+    public boolean isWinner(char[][] board) {
         char sign = currentPlayer.getSign();
 
         for (int i = 0; i < 3; i++) {
-            if (b[i][0] == sign && b[i][1] == sign && b[i][2] == sign) {
+            if ((board[i][0] == sign) && (board[i][1] == sign) && (board[i][2] == sign)) {
                 return true;
-            } else if (b[0][i] == sign && b[1][i] == sign && b[2][i] == sign) {
+            } else if ((board[0][i] == sign) && (board[1][i] == sign) && (board[2][i] == sign)) {
                 return true;
             }
         }
 
-        if (b[0][0] == sign && b[1][1] == sign && b[2][2] == sign) {
+        if ((board[0][0] == sign) && (board[1][1] == sign) && (board[2][2] == sign)) {
             return true;
-        } else if (b[0][2] == sign && b[1][1] == sign && b[2][0] == sign) {
+        } else if ((board[0][2] == sign) && (board[1][1] == sign) && (board[2][0] == sign)) {
             return true;
         }
         return false;
     }
 
-    public boolean isValidMove(int[] move) {
+    public boolean isValidMove(Board board, int[] move) {
         int x = move[0];
         int y = move[1];
         return Character.isWhitespace(board.getBoard()[x][y]);

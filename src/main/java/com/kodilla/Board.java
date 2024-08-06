@@ -11,10 +11,9 @@ public class Board {
     };
 
     public boolean isFull() {
-        boolean result = Arrays.stream(board)
+        return Arrays.stream(board)
                 .map(String::valueOf)
-                .anyMatch(row -> row.contains(" "));
-        return !result;
+                .noneMatch(row -> row.contains(" "));
     }
 
     public void updateBoard(int[] position, char sign) {

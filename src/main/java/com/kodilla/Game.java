@@ -4,6 +4,8 @@ import com.kodilla.players.Computer;
 import com.kodilla.players.Human;
 import com.kodilla.players.Player;
 
+import java.io.IOException;
+
 public class Game {
     private Player player1;
     private Player player2;
@@ -27,6 +29,11 @@ public class Game {
                 ioController.printResult(player1, player2);
             }
             ioController.summaryInfo(player1, player2);
+            try {
+                ioController.saveStatistics(player1, player2, maxPoints);
+            } catch (IOException e) {
+                System.out.println("Could not save statistics!");
+            }
             ioController.playAgain();
         }
     }

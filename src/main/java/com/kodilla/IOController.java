@@ -2,6 +2,12 @@ package com.kodilla;
 
 import com.kodilla.players.Player;
 
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -25,6 +31,18 @@ public class IOController {
             System.out.println("DRAW!");
         }
         System.out.println("*********************");
+    }
+
+    public void saveStatistics(Player player1, Player player2, int maxPoints) throws IOException {
+        PrintWriter printWriter = new PrintWriter(new FileWriter("C:\\Users\\User\\OneDrive\\dev\\ttc\\src\\main\\resources\\log.txt", true));
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        String date = formatter.format(LocalDateTime.now());
+        printWriter.println(date);
+        printWriter.printf("Number of rounds: %d\n", maxPoints);
+        printWriter.printf("%s: %d points\n", player1.getSign(), player1.getPoints());
+        printWriter.printf("%s: %d points\n", player2.getSign(), player2.getPoints());
+        printWriter.println();
+        printWriter.close();
     }
 
     public int getMaxPoints() {
@@ -107,15 +125,14 @@ public class IOController {
     }
 
     public void playAgain() {
-        String playAgain = "";
-        while (!playAgain.equals("n") || !playAgain.equals("x")) {
+        do {
             System.out.println("Press \'n\' to play again or \'x\' to exit the game");
-            playAgain = SCANNER.nextLine().toLowerCase();
+            String playAgain = SCANNER.nextLine().toLowerCase();
             if (playAgain.equals("x")) {
                 System.exit(0);
             } else if (playAgain.equals("n")) {
                 break;
             }
-        }
+        } while (true);
     }
 }
