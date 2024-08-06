@@ -1,7 +1,5 @@
 package com.kodilla.players;
 
-import com.kodilla.Board;
-
 public abstract class Player {
 
     private char sign;
@@ -11,7 +9,7 @@ public abstract class Player {
         this.sign = sign;
     }
 
-    public abstract int[] move(Board board);
+    public abstract int[] move();
 
     public void addPoint() {
         points++;

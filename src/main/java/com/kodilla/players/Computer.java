@@ -12,7 +12,7 @@ public class Computer extends Player {
         super(sign);
     }
 
-    public int[] move(Board board) {
+    public int[] move() {
         return new int[]{RANDOM.nextInt(3), RANDOM.nextInt(3)};
     }
 }
