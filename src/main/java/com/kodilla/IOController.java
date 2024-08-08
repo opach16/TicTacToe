@@ -5,7 +5,6 @@ import com.kodilla.players.Player;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
@@ -92,27 +91,27 @@ public class IOController {
     }
 
     public char getUserSign() {
-        char result;
+        String result;
         while (true) {
             System.out.print("Enter your symbol (X or O): ");
-            result = SCANNER.nextLine().toUpperCase().charAt(0);
-            if (result == 'X' || result == 'O') {
+            result = SCANNER.nextLine().toUpperCase();
+            if (result.equals("X") || result.equals("O")) {
                 break;
             } else {
                 System.out.println("Invalid input");
             }
         }
-        return result;
+        return result.charAt(0);
     }
 
     public boolean singlePlayer() {
-        char result;
+        String result;
         while (true) {
-            System.out.print("Enter \'1\' to single player or \'2\' to two players game: ");
-            result = SCANNER.nextLine().toUpperCase().charAt(0);
-            if (result == '1') {
+            System.out.print("Enter '1' to single player or '2' to two players game: ");
+            result = SCANNER.nextLine().toUpperCase();
+            if (result.equals("1")) {
                 return true;
-            } else if (result == '2') {
+            } else if (result.equals("2")) {
                 return false;
             } else {
                 System.out.println("Invalid input");
@@ -126,7 +125,7 @@ public class IOController {
 
     public void playAgain() {
         do {
-            System.out.println("Press \'n\' to play again or \'x\' to exit the game");
+            System.out.println("Press 'n' to play again or 'x' to exit the game");
             String playAgain = SCANNER.nextLine().toLowerCase();
             if (playAgain.equals("x")) {
                 System.exit(0);
