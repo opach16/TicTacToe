@@ -20,21 +20,22 @@ public class GameService {
 
     public void play() {
         board = new Board();
+        board.displayBoard(currentPlayer);
         while (true) {
-            switchPlayer();
             if (board.isFull()) {
                 ioController.draw();
                 break;
             }
-            ioController.displayBoard(board);
             do {
                 playerMove = currentPlayer.move(board);
             } while (!isValidMove(board, playerMove));
             board.updateBoard(playerMove, currentPlayer.getSign());
+            board.displayBoard(currentPlayer);
             if (isWinner(board.getBoard())) {
                 currentPlayer.addPoint();
                 break;
             }
+            switchPlayer();
         }
     }
 

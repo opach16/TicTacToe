@@ -18,10 +18,10 @@ public class Game {
     public void gameInit() {
         while (true) {
             ioController = new IOController();
-            singlePlayer = ioController.singlePlayer();
+            singlePlayer = ioController.setSinglePlayerGame();
             player1 = new Human(ioController.getUserSign());
             player2 = singlePlayer ? new Computer(player1.getSign() == 'X' ? 'O' : 'X') : new Human(player1.getSign() == 'X' ? 'O' : 'X');
-            currentPlayer = player2;
+            currentPlayer = player1;
             maxPoints = ioController.getMaxPoints();
             gameService = new GameService(player1, player2, currentPlayer, ioController);
             while (maxPoints > player1.getPoints() && maxPoints > player2.getPoints()) {

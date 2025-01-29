@@ -93,7 +93,7 @@ public class IOControllerTestSuite {
         IOController ioController = new IOController();
 
         //when
-        boolean result = ioController.singlePlayer();
+        boolean result = ioController.setSinglePlayerGame();
 
         //then
         assertTrue(result);
@@ -108,7 +108,7 @@ public class IOControllerTestSuite {
         IOController ioController = new IOController();
 
         //when
-        boolean result = ioController.singlePlayer();
+        boolean result = ioController.setSinglePlayerGame();
 
         //then
         assertFalse(result);
@@ -123,7 +123,7 @@ public class IOControllerTestSuite {
         IOController ioController = new IOController();
 
         //when
-        boolean result = ioController.singlePlayer();
+        boolean result = ioController.setSinglePlayerGame();
 
         //then
         assertTrue(result);

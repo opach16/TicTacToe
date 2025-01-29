@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Arrays;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -21,7 +20,7 @@ public class IOController {
     }
 
     public void summaryInfo(Player player1, Player player2) {
-        System.out.println("*********************");
+        System.out.println("\n*********************");
         if (player1.getPoints() > player2.getPoints()) {
             System.out.println(player1.getSign() + " - winner - " + player1.getPoints() + " points");
         } else if (player2.getPoints() > player1.getPoints()) {
@@ -29,7 +28,7 @@ public class IOController {
         } else {
             System.out.println("DRAW!");
         }
-        System.out.println("*********************");
+        System.out.println("*********************\n");
     }
 
     public void saveStatistics(Player player1, Player player2, int maxPoints) throws IOException {
@@ -61,13 +60,6 @@ public class IOController {
             }
         }
         return result;
-    }
-
-    public void displayBoard(Board board) {
-        System.out.println("_______");
-        Arrays.stream(board.getBoard())
-                .forEach(n -> System.out.println("|" + n[0] + "|" + n[1] + "|" + n[2] + "|"));
-
     }
 
     public int[] getMoveFromUser() {
@@ -104,10 +96,10 @@ public class IOController {
         return result.charAt(0);
     }
 
-    public boolean singlePlayer() {
+    public boolean setSinglePlayerGame() {
         String result;
         while (true) {
-            System.out.print("Enter '1' to single player or '2' to two players game: ");
+            System.out.print("Enter '1' for single player or '2' for two players game: ");
             result = SCANNER.nextLine().toUpperCase();
             if (result.equals("1")) {
                 return true;
